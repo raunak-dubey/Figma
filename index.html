@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.8.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+    <title>Figma</title>
+</head>
+
+<body>
+    <div class="editor">
+
+        <!-- @ Main Workspace -->
+        <div class="workspace">
+
+            <!-- * Layers Panel -->
+            <aside class="panel layers-panel">
+                <div class="panel-header">Layers</div>
+                <ul class="layers-list"></ul>
+            </aside>
+
+            <!-- * Canvas Area -->
+                <div id="canvas"></div>
+
+        </div>
+
+        <!-- @ Toolbar -->
+        <div class="toolbar">
+            <div class="move icons" data-name="move">
+                <i class="icon ri-cursor-fill"></i>
+            </div>
+            <div class="frame icons" data-name="frame">
+                <i class="icon ri-artboard-line"></i>
+            </div>
+            <div class="shape icons" data-name="shape">
+                <i class="icon ri-rectangle-line"></i>
+            </div>
+            <div class="text icons" data-name="text">
+                <i class="icon ri-text"></i>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
