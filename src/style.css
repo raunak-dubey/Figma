@@ -133,3 +133,27 @@ body {
     right: -5px;
     cursor: nwse-resize;
 }
+
+/* @ Rotation Handle */
+.rotate-handle {
+    position: absolute;
+    top: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #2563eb;
+    cursor: grab;
+}
+
+.rotate-handle::after {
+    content: "";
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    width: 1px;
+    height: 16px;
+    background: #2563eb;
+    transform: translateX(-50%);
+}

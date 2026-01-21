@@ -1,5 +1,5 @@
 import { state } from "../core/state.js";
-import { addResizeHandles, removeResizeHandles } from "../core/utils.js";
+import { addResizeHandles, addRotationHandle, removeResizeHandles, removeRotationHandle } from "../core/utils.js";
 
 export const selectElement = (id, canvas) => {
     if (state.selectedId) {
@@ -8,6 +8,7 @@ export const selectElement = (id, canvas) => {
         if (prevSelected) {
             prevSelected.classList.remove("selected");
             removeResizeHandles(prevSelected);
+            removeRotationHandle(prevSelected);
         }
     }
 
@@ -16,6 +17,7 @@ export const selectElement = (id, canvas) => {
 
     currentSelected.classList.add("selected");
     addResizeHandles(currentSelected);
+    addRotationHandle(currentSelected);
     state.selectedId = id;
 }
 
@@ -26,6 +28,7 @@ export const deselectElement = () => {
     if (currentElem) {
         currentElem.classList.remove("selected");
         removeResizeHandles(currentElem);
+        removeRotationHandle(currentElem);
     }
 
     state.selectedId = null;

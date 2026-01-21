@@ -12,6 +12,9 @@ export function renderElement(data, canvas) {
     elem.style.top = data.y + "px";
     elem.style.width = data.width + "px";
     elem.style.height = data.height + "px";
+    elem.style.transform = `rotate(${data.rotation}deg)`;
+    elem.style.transformOrigin = "center center";
+
     if (data.type === "rect") {
         elem.style.backgroundColor = data.background;
     }
@@ -24,7 +27,7 @@ export function renderElement(data, canvas) {
     }
 
     elem.addEventListener("mousedown", (e) => {
-        if (e.target.closest(".resize-handle")) return;
+        if (e.target.closest(".resize-handle") || e.target.closest(".rotate-handle")) return;
 
         e.stopPropagation();
         selectElement(data.id, canvas);
