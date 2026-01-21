@@ -5,6 +5,15 @@ const state = {
     selectedId: null
 };
 
+const dragState = {
+    isDragging: false,
+    startMouseX: 0,
+    startMouseY: 0,
+    startX: 0,
+    startY: 0,
+    elementId: null
+};
+
 let idCounter = "";
 
 // * generate unique ID
@@ -19,14 +28,14 @@ const clamp = (value, min, max) => {
 
 const createElement = (type) => {
     const id = generateId();
-    
-    const width = type === "text" ? 120 : 100;
-    const height = type === "text" ? 40 : 100;
+
+    let width = type === "text" ? 120 : 100;
+    let height = type === "text" ? 40 : 100;
+
     let x = 50;
     let y = 50;
 
     const canvasRect = canvas.getBoundingClientRect();
-
     x = clamp(x, 0, canvasRect.width - width);
     y = clamp(y, 0, canvasRect.height - height);
 
@@ -37,11 +46,11 @@ const createElement = (type) => {
         y,
         width,
         height,
+        rotation: 0,
+
         text: type === "text" ? "Text" : "",
-        background: type === "rect" ? "#4f46e5" : "transparent"
-
+        background: type === "rect" ? "#4f46e5" : "transparent",
     };
-
 
     state.elements.push(elementData);
     renderElement(elementData);
@@ -69,9 +78,18 @@ const renderElement = (data) => {
         elem.style.color = "#000";
     }
 
-    elem.addEventListener("click", (e) => {
+    elem.addEventListener("mousedown", (e) => {
         e.stopPropagation();
         selectElement(data.id);
+
+        dragState.isDragging = true;
+        dragState.elementId = data.id;
+
+        dragState.startMouseX = e.clientX;
+        dragState.startMouseY = e.clientY;
+        dragState.startX = data.x;
+        dragState.startY = data.y;
+
     });
 
     canvas.appendChild(elem);
@@ -115,4 +133,44 @@ document.body.addEventListener('click', (e) => {
         createElement("text");
     }
 })
-canvas.addEventListener('click', deselectElement);
+
+canvas.addEventListener("click", (e) => {
+    if (dragState.isDragging) return;
+
+    if (!e.target.closest(".element")) {
+        deselectElement();
+    }
+});
+
+// * Update Dragging Position
+window.addEventListener('mousemove', (e) => {
+    if (!dragState.isDragging) return;
+
+    const elementData = state.elements.find(elem => elem.id === dragState.elementId);
+    if (!elementData) return;
+
+    const deltaX = e.clientX - dragState.startMouseX;
+    const deltaY = e.clientY - dragState.startMouseY;
+
+    const canvasRect = canvas.getBoundingClientRect();
+
+    const newX = dragState.startX + deltaX;
+    const newY = dragState.startY + deltaY;
+
+    const clampedX = clamp(newX, 0, canvasRect.width - elementData.width);
+    const clampedY = clamp(newY, 0, canvasRect.height - elementData.height);
+
+    elementData.x = clampedX;
+    elementData.y = clampedY;
+
+    const elem = canvas.querySelector(`.element[data-id='${elementData.id}']`);
+    if (elem) {
+        elem.style.left = elementData.x + "px";
+        elem.style.top = elementData.y + "px";
+    }
+});
+// * Stop Dragging
+window.addEventListener('mouseup', (e) => {
+    dragState.isDragging = false;
+    dragState.elementId = null;
+});

@@ -58,6 +58,10 @@ body {
 }
 
 /* @ Canvas Elements Styles */
+.element {
+    position: absolute;
+}
+
 .element.selected {
     outline: 2px solid #2563eb;
     outline-offset: 2px;
