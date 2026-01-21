@@ -24,6 +24,8 @@ export function renderElement(data, canvas) {
     }
 
     elem.addEventListener("mousedown", (e) => {
+        if (e.target.closest(".resize-handle")) return;
+
         e.stopPropagation();
         selectElement(data.id, canvas);
 

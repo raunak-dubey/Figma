@@ -6,7 +6,7 @@ export const initCanvas = (canvas) => {
         if (dragState.isDragging) return;
 
         if (!e.target.closest(".element")) {
-            deselectElement();
+            deselectElement(canvas);
         }
     });
 };

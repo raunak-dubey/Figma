@@ -16,6 +16,8 @@ body {
     --text: #f1f5f9;
     --bg-panel: #1E1E1E;
     --glass: rgba(255, 255, 255, 0.1);
+    --accent: #2563eb;
+    --helper: #efefef;
 }
 
 /* @ Editor and Workspaces */
@@ -46,7 +48,7 @@ body {
     position: relative;
     width: 75%;
     height: 80vh;
-    background: #efefef;
+    background: var(--helper);
     cursor: grab;
     margin: auto;
     overflow: hidden;
@@ -63,7 +65,7 @@ body {
 }
 
 .element.selected {
-    outline: 2px solid #2563eb;
+    outline: 2px solid var(--accent);
     outline-offset: 2px;
 }
 
@@ -96,4 +98,38 @@ body {
         background: rgba(255, 255, 255, 0.2);
         border-radius: 6px;
     }
+}
+
+/* @ Resize Handles */
+.resize-handle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--helper);
+    border: 1px solid var(--accent);
+    z-index: 10;
+}
+
+.resize-handle.tl {
+    top: -5px;
+    left: -5px;
+    cursor: nwse-resize;
+}
+
+.resize-handle.tr {
+    top: -5px;
+    right: -5px;
+    cursor: nesw-resize;
+}
+
+.resize-handle.bl {
+    bottom: -5px;
+    left: -5px;
+    cursor: nesw-resize;
+}
+
+.resize-handle.br {
+    bottom: -5px;
+    right: -5px;
+    cursor: nwse-resize;
 }
