@@ -8,8 +8,6 @@ export const initRotate = (canvas) => {
 
         e.stopPropagation();
 
-        console.log(handle);
-        
         const elem = handle.parentElement;
         const id = elem.dataset.id;
         const elementData = state.elements.find(elem => elem.id === id);

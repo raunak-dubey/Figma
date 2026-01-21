@@ -1,4 +1,5 @@
 import { clamp, generateId } from "../core/utils.js";
+import { state } from "../core/state.js";
 
 export const createElementData = (type, canvas) => {
   const id = generateId();
@@ -21,6 +22,7 @@ export const createElementData = (type, canvas) => {
     width,
     height,
     rotation: 0,
+    zIndex: state.elements.length + 1,
 
     text: type === "text" ? "Text" : "",
     background: type === "rect" ? "#4f46e5" : "transparent",

@@ -15,7 +15,7 @@ body {
     --bg-app: #111;
     --text: #f1f5f9;
     --bg-panel: #1E1E1E;
-    --glass: rgba(255, 255, 255, 0.1);
+    --glass: rgba(255, 255, 255, 0.2);
     --accent: #2563eb;
     --helper: #efefef;
 }
@@ -38,9 +38,17 @@ body {
 }
 
 .panel {
+    padding: 1rem;
     height: 100%;
     width: 16rem;
     background-color: var(--bg-panel);
+
+    .panel-header {
+        font-size: 1.25rem;
+        font-weight: 600;
+        padding-bottom: .5rem;
+        border-bottom: 1px solid var(--glass);
+    }
 }
 
 /* @ Canvas Area */
@@ -95,7 +103,7 @@ body {
     }
 
     .icons.active {
-        background: rgba(255, 255, 255, 0.2);
+        background: var(--glass);
         border-radius: 6px;
     }
 }
@@ -143,7 +151,7 @@ body {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: #2563eb;
+    background: var(--accent);
     cursor: grab;
 }
 
@@ -154,6 +162,63 @@ body {
     left: 50%;
     width: 1px;
     height: 16px;
-    background: #2563eb;
+    background: var(--accent);
     transform: translateX(-50%);
+}
+
+/* @ Layers Panel */
+#layersList {
+    list-style: none;
+    padding: 6px;
+}
+
+.layer-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .4rem .6rem;
+    border-radius: .3rem;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.layer-item:hover {
+    background: var(--glass);
+}
+
+.layer-item.active {
+    background: rgba(37, 99, 235, 0.25);
+}
+
+/* Left section */
+.layer-left {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    text-transform: capitalize;
+}
+
+/* Actions (hidden until hover) */
+.layer-actions {
+    display: flex;
+    gap: 4px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}
+
+.layer-item:hover .layer-actions {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.layer-actions i {
+    font-size: 16px;
+    padding: 2px;
+    border-radius: 4px;
+}
+
+.layer-actions i:hover {
+    background: var(--glass);
 }

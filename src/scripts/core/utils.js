@@ -1,3 +1,5 @@
+import { state } from "./state.js";
+
 export const generateId = () => crypto.randomUUID()
 
 export const clamp = (value, min, max) => {
@@ -37,4 +39,19 @@ export const addRotationHandle = (elem) => {
 export const removeRotationHandle = (elem) => {
     const handle = elem.querySelector(".rotate-handle");
     if (handle) handle.remove();
+};
+
+// * Z-Index Management * //
+export const syncZIndex = (elements) => {
+    elements.forEach((elem, index) => {
+        elem.zIndex = index + 1;
+    });
+};
+
+export const updateCanvasZIndex = (canvas) => {
+    state.elements.forEach(elem => {
+        const domElem = canvas.querySelector(`.element[data-id='${elem.id}']`);
+
+        if (domElem) domElem.style.zIndex = elem.zIndex;
+    });
 };
