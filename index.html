@@ -15,14 +15,23 @@
         <!-- @ Main Workspace -->
         <div class="workspace">
 
-            <!-- * Layers Panel -->
-            <aside class="panel layers-panel">
-                <div class="panel-header">Layers</div>
-                <ul id="layersList"></ul>
+            <aside class="panel right-panel">
+                <!-- Layers -->
+                <div id="layersPanel">
+                    <div class="panelHeader">Layers</div>
+                    <ul id="layersList"></ul>
+                </div>
+
+                <!-- Properties -->
+                <div id="propertiesPanel" hidden>
+                    <div class="panelHeader">Properties</div>
+                    <div id="propertiesContent"></div>
+                </div>
             </aside>
 
+
             <!-- * Canvas Area -->
-                <div id="canvas"></div>
+            <div id="canvas"></div>
 
         </div>
 

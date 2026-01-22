@@ -15,7 +15,7 @@ export function renderElement(data, canvas) {
     elem.style.transform = `rotate(${data.rotation}deg)`;
     elem.style.transformOrigin = "center center";
     elem.style.zIndex = data.zIndex;
-    
+
     if (data.type === "rect") {
         elem.style.backgroundColor = data.background;
     }

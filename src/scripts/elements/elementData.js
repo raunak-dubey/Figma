@@ -25,6 +25,6 @@ export const createElementData = (type, canvas) => {
     zIndex: state.elements.length + 1,
 
     text: type === "text" ? "Text" : "",
-    background: type === "rect" ? "#4f46e5" : "transparent",
+    background: type === "rect" ? "#4f46e5" : null,
   };
 };

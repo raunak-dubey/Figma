@@ -1,5 +1,6 @@
 import { state } from "../core/state.js";
 import { addResizeHandles, addRotationHandle, removeResizeHandles, removeRotationHandle } from "../core/utils.js";
+import { hidePropertiesPanel, showPropertiesPanel } from "../ui/properties.js";
 
 export const selectElement = (id, canvas) => {
     if (state.selectedId) {
@@ -25,6 +26,7 @@ export const selectElement = (id, canvas) => {
     addResizeHandles(currentSelected);
     addRotationHandle(currentSelected);
     state.selectedId = id;
+    showPropertiesPanel(canvas);
 }
 
 export const deselectElement = () => {
@@ -40,6 +42,7 @@ export const deselectElement = () => {
         currentElem.classList.remove("selected");
         removeResizeHandles(currentElem);
         removeRotationHandle(currentElem);
+        hidePropertiesPanel();
     }
 
     state.selectedId = null;

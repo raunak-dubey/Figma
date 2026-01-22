@@ -12,62 +12,78 @@ body {
 }
 
 :root {
-    --bg-app: #111;
-    --text: #f1f5f9;
-    --bg-panel: #1E1E1E;
-    --glass: rgba(255, 255, 255, 0.2);
+    --bg-app: #0f1115;
+    --bg-panel: #16181d;
+    --bg-canvas: #f3f4f6;
+
+    --text-primary: #e5e7eb;
+    --text-muted: #9ca3af;
+
     --accent: #2563eb;
-    --helper: #efefef;
+    --accent-soft: rgba(37, 99, 235, 0.25);
+
+    --glass: rgba(255, 255, 255, 0.08);
+    --border-subtle: rgba(255, 255, 255, 0.12);
+
+    --radius-sm: .3rem;
+    --radius-md: 0.625rem;
+
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
-/* @ Editor and Workspaces */
+/* @ App Layout */
 .editor {
     height: 100vh;
-    width: 100%;
-    background-color: var(--bg-app);
-    color: var(--text);
+    background: var(--bg-app);
+    color: var(--text-primary);
     display: flex;
     flex-direction: column;
 }
 
 .workspace {
-    height: 100%;
-    width: 100%;
+    flex: 1;
     display: flex;
-    justify-content: space-between;
 }
 
+/* @ Panel */
 .panel {
-    padding: 1rem;
-    height: 100%;
     width: 16rem;
-    background-color: var(--bg-panel);
-
-    .panel-header {
-        font-size: 1.25rem;
-        font-weight: 600;
-        padding-bottom: .5rem;
-        border-bottom: 1px solid var(--glass);
-    }
+    padding: 1rem;
+    background: var(--bg-panel);
+    border-left: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
-/* @ Canvas Area */
+.panelHeader {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+/* @ Canvas */
 #canvas {
     position: relative;
-    width: 75%;
-    height: 80vh;
-    background: var(--helper);
-    cursor: grab;
+    flex: 1;
     margin: auto;
+    height: 80vh;
+    max-width: 75%;
+    background: var(--bg-canvas);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-soft);
     overflow: hidden;
-    overscroll-behavior: none;
+    cursor: grab;
 }
 
 #canvas:active {
     cursor: grabbing;
 }
 
-/* @ Canvas Elements Styles */
+/* @ Elements */
 .element {
     position: absolute;
 }
@@ -78,42 +94,17 @@ body {
 }
 
 .element.text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* @ Toolbar */
-.toolbar {
-    position: absolute;
-    bottom: 1%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: var(--glass);
     display: flex;
     align-items: center;
-    padding-block: 0.75rem;
-    padding-inline: 1rem;
-    gap: 1.5rem;
-    border-radius: 0.5rem;
-
-    .icon {
-        font-size: 1.5rem;
-        cursor: pointer;
-    }
-
-    .icons.active {
-        background: var(--glass);
-        border-radius: 6px;
-    }
+    justify-content: center;
 }
 
-/* @ Resize Handles */
+/* @ Resize and Rotate Handle */
 .resize-handle {
     position: absolute;
     width: 8px;
     height: 8px;
-    background: var(--helper);
+    background: var(--bg-canvas);
     border: 1px solid var(--accent);
     z-index: 10;
 }
@@ -142,44 +133,80 @@ body {
     cursor: nwse-resize;
 }
 
-/* @ Rotation Handle */
 .rotate-handle {
+    width: 12px;
+    height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
     position: absolute;
     top: -28px;
     left: 50%;
     transform: translateX(-50%);
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: var(--accent);
-    cursor: grab;
 }
 
-.rotate-handle::after {
-    content: "";
+/* @ Toolbar */
+.toolbar {
     position: absolute;
-    top: 12px;
+    bottom: 1.25rem;
     left: 50%;
-    width: 1px;
-    height: 16px;
-    background: var(--accent);
     transform: translateX(-50%);
+    display: flex;
+    gap: 1rem;
+
+    padding: 0.5rem 0.375rem;
+    background: color-mix(in srgb, var(--bg-panel) 85%, black 15%);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-soft);
+}
+
+/* * Icon button */
+.toolbar .icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 2.25rem;
+    height: 2.25rem;
+
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+/* * Icon size */
+.toolbar .icons .icon {
+    font-size: 1.25rem;
+    color: var(--text-primary);
+}
+
+/* * Hover */
+.toolbar .icons:hover {
+    background: var(--glass);
+}
+
+/* * Active tool */
+.toolbar .icons.active {
+    background: var(--accent-soft);
+}
+
+.toolbar .icons.active .icon {
+    color: var(--accent);
 }
 
 /* @ Layers Panel */
 #layersList {
     list-style: none;
-    padding: 6px;
+    padding: 0.25rem;
 }
 
 .layer-item {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: .4rem .6rem;
-    border-radius: .3rem;
+    padding: 0.45rem 0.6rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
     cursor: pointer;
-    transition: background 0.15s ease;
 }
 
 .layer-item:hover {
@@ -187,38 +214,38 @@ body {
 }
 
 .layer-item.active {
-    background: rgba(37, 99, 235, 0.25);
+    background: var(--accent-soft);
 }
 
-/* Left section */
-.layer-left {
+/* @ Properties Panel */
+.property {
     display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.85rem;
-    text-transform: capitalize;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-bottom: 0.75rem;
 }
 
-/* Actions (hidden until hover) */
-.layer-actions {
-    display: flex;
-    gap: 4px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.15s ease;
+.property label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
 }
 
-.layer-item:hover .layer-actions {
-    opacity: 1;
-    pointer-events: auto;
+.property input {
+    background: var(--bg-app);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    padding: 0.45rem 0.5rem;
+    outline: none;
 }
 
-.layer-actions i {
-    font-size: 16px;
-    padding: 2px;
-    border-radius: 4px;
+.property input[type="color"] {
+    padding: 0.1rem;
+    height: 2rem;
+    width: 30%;
+    background: none;
+    cursor: pointer;
 }
 
-.layer-actions i:hover {
-    background: var(--glass);
+.property input:focus {
+    border-color: var(--accent);
 }
