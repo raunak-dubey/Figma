@@ -1,5 +1,5 @@
 import { resizeState, state } from "../core/state.js";
-import { clamp } from "../core/utils.js";
+import { clamp, commit } from "../core/utils.js";
 
 export const initResize = (canvas) => {
     canvas.addEventListener("mousedown", (e) => {
@@ -64,5 +64,6 @@ export const initResize = (canvas) => {
 
     window.addEventListener("mouseup", () => {
         resizeState.isResizing = false;
+        commit();
     });
 }

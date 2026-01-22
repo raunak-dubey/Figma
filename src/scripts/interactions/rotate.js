@@ -1,5 +1,5 @@
 import { rotateState, state } from "../core/state.js";
-import { calculateRotationAngle } from "../core/utils.js";
+import { calculateRotationAngle, commit } from "../core/utils.js";
 
 export const initRotate = (canvas) => {
     canvas.addEventListener("mousedown", (e) => {
@@ -41,5 +41,6 @@ export const initRotate = (canvas) => {
 
     window.addEventListener("mouseup", () => {
         rotateState.isRotating = false;
+        commit();
     });
 }

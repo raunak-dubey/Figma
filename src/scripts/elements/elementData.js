@@ -26,5 +26,6 @@ export const createElementData = (type, canvas) => {
 
     text: type === "text" ? "Text" : "",
     background: type === "rect" ? "#4f46e5" : null,
+    color: type === "text" ? "#111827" : null
   };
 };

@@ -53,6 +53,11 @@ const renderProperties = (data, canvas) => {
             data.text = v;
             updateElementText(data, canvas);
         });
+
+        colorField("Text Color", data.color || "#111827", v => {
+            data.color = v;
+            updateElementStyle(data, canvas);
+        });
     }
 };
 

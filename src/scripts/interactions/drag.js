@@ -1,5 +1,5 @@
 import { dragState, state } from "../core/state.js";
-import { clamp } from "../core/utils.js";
+import { clamp, commit } from "../core/utils.js";
 
 export const initDrag = (canvas) => {
     window.addEventListener('mousemove', (e) => {
@@ -32,5 +32,6 @@ export const initDrag = (canvas) => {
     window.addEventListener('mouseup', (e) => {
         dragState.isDragging = false;
         dragState.elementId = null;
+        commit();
     });
 }

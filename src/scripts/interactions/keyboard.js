@@ -1,5 +1,5 @@
 import { state } from "../core/state.js";
-import { clamp } from "../core/utils.js";
+import { clamp, commit } from "../core/utils.js";
 import { deselectElement } from "../elements/elementSelection.js";
 import { renderLayers } from "../ui/layers.js";
 
@@ -51,6 +51,8 @@ const move = ({ event, canvas, data, elem }, dx, dy) => {
 
     elem.style.left = data.x + "px";
     elem.style.top = data.y + "px";
+
+    commit();
 };
 
 const deleteSelected = (canvas) => {

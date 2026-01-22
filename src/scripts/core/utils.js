@@ -1,3 +1,4 @@
+import { saveLayout } from "./persistence.js";
 import { state } from "./state.js";
 
 export const generateId = () => crypto.randomUUID()
@@ -5,6 +6,9 @@ export const generateId = () => crypto.randomUUID()
 export const clamp = (value, min, max) => {
     return Math.max(min, Math.min(value, max));
 };
+
+// * Persistence * //
+export const commit = () => saveLayout();
 
 // * Resize Handles Management * //
 export const addResizeHandles = (elem) => {

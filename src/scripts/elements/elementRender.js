@@ -25,7 +25,7 @@ export function renderElement(data, canvas) {
         elem.textContent = data.text;
         elem.classList.add("text");
         elem.style.fontSize = "16px";
-        elem.style.color = "#000";
+        elem.style.color = data.color || "#111827";
 
         elem.addEventListener("dblclick", (e) => {
             e.stopPropagation();
