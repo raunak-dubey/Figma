@@ -4,53 +4,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A lightweight Figma-like canvas editor for creating and editing shapes and text.">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.8.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="stylesheet" href="./src/style.css">
     <title>Figma</title>
 </head>
 
 <body>
-    <div class="editor">
+    <!-- @ Toolbar -->
+    <header class="toolbar" aria-label="Editor toolbar">
+        <button class="move icons" data-name="move" aria-label="Move tool">
+            <i class="icon ri-cursor-fill" aria-hidden="true"></i>
+        </button>
+        <button class="frame icons" data-name="frame" aria-label="Frame tool">
+            <i class="icon ri-artboard-line" aria-hidden="true"></i>
+        </button>
+        <button class="shape icons" data-name="shape" aria-label="Draw rectangle">
+            <i class="icon ri-rectangle-line" aria-hidden="true"></i>
+        </button>
+        <button class="text icons" data-name="text" aria-label="Text tool">
+            <i class="icon ri-text" aria-hidden="true"></i>
+        </button>
+    </header>
+
+    <main class="editor">
 
         <!-- @ Main Workspace -->
-        <div class="workspace">
-
+        <section class="workspace">
             <aside class="panel right-panel">
-                <!-- Layers -->
+                <!-- * Layers -->
                 <div id="layersPanel">
                     <div class="panelHeader">Layers</div>
                     <ul id="layersList"></ul>
                 </div>
 
-                <!-- Properties -->
+                <!-- * Properties -->
                 <div id="propertiesPanel" hidden>
                     <div class="panelHeader">Properties</div>
                     <div id="propertiesContent"></div>
                 </div>
             </aside>
 
-
             <!-- * Canvas Area -->
-            <div id="canvas"></div>
+            <section id="canvas" tabindex="0" aria-label="Design canvas"></section>
+        </section>
 
-        </div>
-
-        <!-- @ Toolbar -->
-        <div class="toolbar">
-            <div class="move icons" data-name="move">
+        <!-- <div class="toolbar">
+            <button class="move icons" data-name="move" aria-label="move">
                 <i class="icon ri-cursor-fill"></i>
-            </div>
-            <div class="frame icons" data-name="frame">
+            </button>
+            <button class="frame icons" data-name="frame" aria-label="frame">
                 <i class="icon ri-artboard-line"></i>
-            </div>
-            <div class="shape icons" data-name="shape">
+            </button>
+            <button class="shape icons" data-name="shape" aria-label="Draw rectangle">
                 <i class="icon ri-rectangle-line"></i>
-            </div>
-            <div class="text icons" data-name="text">
+            </button>
+            <button class="text icons" data-name="text" aria-label="text">
                 <i class="icon ri-text"></i>
-            </div>
-        </div>
-    </div>
+            </button>
+        </div> -->
+    </main>
 
     <script type="module" src="./src/scripts/app.js"></script>
 </body>

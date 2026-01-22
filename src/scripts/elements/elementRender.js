@@ -1,5 +1,6 @@
 import { dragState } from "../core/state.js";
 import { selectElement } from "./elementSelection.js";
+import { enableTextEditing } from "./textEditing.js";
 
 export function renderElement(data, canvas) {
     const elem = document.createElement("div");
@@ -25,6 +26,11 @@ export function renderElement(data, canvas) {
         elem.classList.add("text");
         elem.style.fontSize = "16px";
         elem.style.color = "#000";
+
+        elem.addEventListener("dblclick", (e) => {
+            e.stopPropagation();
+            enableTextEditing(elem, data);
+        });
     }
 
     elem.addEventListener("mousedown", (e) => {
