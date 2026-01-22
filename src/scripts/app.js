@@ -8,6 +8,7 @@ import { loadLayout } from "./core/persistence.js";
 import { state } from "./core/state.js";
 import { renderElement } from "./elements/elementRender.js";
 import { renderLayers } from "./ui/layers.js";
+import { exportHTML, exportJSON } from "./ui/export.js";
 
 const canvas = document.getElementById("canvas");
 
@@ -24,9 +25,14 @@ if (savedElements.length) {
     renderLayers(canvas);
 }
 
+// * Initialization
 initToolbar(canvas);
 initCanvas(canvas);
 initDrag(canvas);
 initResize(canvas);
 initRotate(canvas);
 initKeyboard(canvas)
+
+// * Export
+document.getElementById("exportJson").onclick = exportJSON;
+document.getElementById("exportHtml").onclick = exportHTML;
