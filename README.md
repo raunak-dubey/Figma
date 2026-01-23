@@ -69,8 +69,8 @@ Keyboard movement respects canvas boundaries and editing context.
 ## 🧩 Project Structure
 
 ```text
-index.html             # Entry HTML
-src/
+root/
+├── index.html             # Entry HTML
 ├── scripts/
 │   ├── core/
 │   │   ├── state.js          # Global editor state
@@ -98,7 +98,11 @@ src/
 │   │
 │   └── app.js                 # App bootstrap & wiring
 │
-└── style.css                  # Global styles
+├── styles/
+|   ├── style.css
+|   └── style.min.css
+|
+└── assets/              # All images and assets
 ```
 
 ## 🛠 Tech Stack

@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A lightweight Figma-like canvas editor for creating and editing shapes and text.">
-    <link rel="icon" href="/public/favicon.png" sizes="32x32" type="image/png">
-    <link rel="stylesheet" href="./src/style.min.css">
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" type="image/png">
+    <link rel="stylesheet" href="/styles/style.min.css">
 
     <title>Figma</title>
 </head>
@@ -16,10 +16,10 @@
     <header class="toolbar" aria-label="Editor toolbar">
         <div class="toolbar-group">
             <button class="shape icons" data-name="shape" aria-label="Rectangle">
-                <img class="icon" src="/public/rectangle.svg" alt="add shape" width="20" height="20">
+                <img class="icon" src="/assets/rectangle.svg" alt="add shape" width="20" height="20">
             </button>
             <button class="text icons" data-name="text" aria-label="Text">
-                <img class="icon" src="/public/text.svg" alt="add text" width="20" height="20">
+                <img class="icon" src="/assets/text.svg" alt="add text" width="20" height="20">
             </button>
         </div>
 
@@ -27,11 +27,11 @@
 
         <div class="toolbar-group export">
             <button id="exportJson" class="export-btn" aria-label="Export as JSON">
-                <img class="icon" src="/public/json.svg" alt="json logo" width="20" height="20">
+                <img class="icon" src="/assets/json.svg" alt="json logo" width="20" height="20">
                 JSON
             </button>
             <button id="exportHtml" class="export-btn" aria-label="Export as HTML">
-                <img class="icon" src="/public/html5.svg" alt="html5 logo" width="20" height="20">
+                <img class="icon" src="/assets/html5.svg" alt="html5 logo" width="20" height="20">
                 HTML
             </button>
         </div>
@@ -46,7 +46,7 @@
                     <div class="panelHeader">
                         <span class="panelHeader-title">Layers</span>
                         <button class="panelHeader-action" aria-label="Layer options">
-                            <img class="icon" src="/public/more.svg" alt="menu" width="20" height="20">
+                            <img class="icon" src="/assets/more.svg" alt="menu" width="20" height="20">
                         </button>
                     </div>
                     <ul id="layersList"></ul>
@@ -70,7 +70,7 @@
         </section>
     </main>
 
-    <script type="module" src="./src/scripts/app.js"></script>
+    <script type="module" src="/scripts/app.js"></script>
 </body>
 
 </html>

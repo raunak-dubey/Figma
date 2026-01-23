@@ -5,10 +5,10 @@ import { selectElement } from "../elements/elementSelection.js";
 const layersList = document.getElementById("layersList");
 
 const ICON_PATHS = {
-    shape: '/public/rectangle.svg',
-    text: '/public/text.svg',
-    up: '/public/arrow-up.svg',
-    down: '/public/arrow-down.svg'
+    shape: '/assets/rectangle.svg',
+    text: '/assets/text.svg',
+    up: '/assets/arrow-up.svg',
+    down: '/assets/arrow-down.svg'
 };
 
 export const renderLayers = () => {
