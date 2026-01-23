@@ -5,17 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A lightweight Figma-like canvas editor for creating and editing shapes and text.">
-    <link rel="shortcut icon" href="./src/assets/favicon.png" type="image/x-icon">
-
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/remixicon@4.8.0/fonts/remixicon.css" as="style"
-        onload="this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.8.0/fonts/remixicon.css">
-    </noscript>
-    <link rel="preload" href="./src/style.css" as="style" onload="this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="./src/style.css">
-    </noscript>
+    <link rel="icon" href="/public/favicon.png" sizes="32x32" type="image/png">
+    <link rel="stylesheet" href="./src/style.min.css">
 
     <title>Figma</title>
 </head>
@@ -24,17 +15,11 @@
     <!-- @ Toolbar -->
     <header class="toolbar" aria-label="Editor toolbar">
         <div class="toolbar-group">
-            <button class="move icons" data-name="move" aria-label="Move tool">
-                <i class="icon ri-cursor-fill" aria-hidden="true"></i>
-            </button>
-            <button class="frame icons" data-name="frame" aria-label="Frame tool">
-                <i class="icon ri-artboard-line" aria-hidden="true"></i>
-            </button>
             <button class="shape icons" data-name="shape" aria-label="Rectangle">
-                <i class="icon ri-rectangle-line" aria-hidden="true"></i>
+                <img class="icon" src="/public/rectangle.svg" alt="add shape" width="20" height="20">
             </button>
             <button class="text icons" data-name="text" aria-label="Text">
-                <i class="icon ri-text" aria-hidden="true"></i>
+                <img class="icon" src="/public/text.svg" alt="add text" width="20" height="20">
             </button>
         </div>
 
@@ -42,11 +27,11 @@
 
         <div class="toolbar-group export">
             <button id="exportJson" class="export-btn" aria-label="Export as JSON">
-                <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+                <img class="icon" src="/public/json.svg" alt="json logo" width="20" height="20">
                 JSON
             </button>
             <button id="exportHtml" class="export-btn" aria-label="Export as HTML">
-                <i class="ri-html5-line" aria-hidden="true"></i>
+                <img class="icon" src="/public/html5.svg" alt="html5 logo" width="20" height="20">
                 HTML
             </button>
         </div>
@@ -61,7 +46,7 @@
                     <div class="panelHeader">
                         <span class="panelHeader-title">Layers</span>
                         <button class="panelHeader-action" aria-label="Layer options">
-                            <i class="ri-more-line"></i>
+                            <img class="icon" src="/public/more.svg" alt="menu" width="20" height="20">
                         </button>
                     </div>
                     <ul id="layersList"></ul>
@@ -74,7 +59,6 @@
                     </div>
                     <div id="propertiesContent">
                         <div class="empty-state">
-                            <i class="empty-state-icon ri-cursor-line"></i>
                             <p class="empty-state-text">Select an element to<br>edit its properties</p>
                         </div>
                     </div>

@@ -4,6 +4,13 @@ import { selectElement } from "../elements/elementSelection.js";
 
 const layersList = document.getElementById("layersList");
 
+const ICON_PATHS = {
+    shape: '/public/rectangle.svg',
+    text: '/public/text.svg',
+    up: '/public/arrow-up.svg',
+    down: '/public/arrow-down.svg'
+};
+
 export const renderLayers = () => {
     if (!layersList) return;
 
@@ -19,8 +26,11 @@ export const renderLayers = () => {
         const layerLeft = document.createElement('div');
         layerLeft.className = 'layer-left';
 
-        const icon = document.createElement('i');
-        icon.className = 'ri-shape-line';
+        const icon = document.createElement("img");
+        icon.className = 'layer-icon';
+        icon.src = element.type === "text" ? ICON_PATHS.text : ICON_PATHS.shape;
+        icon.alt = element.type;
+        icon.draggable = false;
         layerLeft.appendChild(icon);
 
         const span = document.createElement('span');
@@ -37,20 +47,33 @@ export const renderLayers = () => {
         layerActions.className = 'layer-actions';
 
         ['up', 'down'].forEach(action => {
-            const i = document.createElement('i');
-            i.className = `${action} ri-arrow-${action}-s-line`;
-            i.dataset.action = action;
-            layerActions.appendChild(i);
+            const actionBtn = document.createElement("img");
+            actionBtn.className = `${action} layer-action-btn`;
+            actionBtn.src = ICON_PATHS[action];
+            actionBtn.alt = `Move ${action}`;
+            actionBtn.draggable = false;
+            actionBtn.dataset.action = action;
+            layerActions.appendChild(actionBtn);
         });
 
         layerItem.innerHTML = '';
         layerItem.appendChild(layerLeft);
         layerItem.appendChild(layerActions);
 
-        layerItem.onclick = () => selectElement(element.id, canvas)
+        layerItem.onclick = (e) => {
+            if (e.target.classList.contains("layer-action-btn")) return;
+            selectElement(element.id, canvas)
+        }
 
-        layerItem.querySelector(".up").onclick = () => moveLayerUp(element.id, canvas);
-        layerItem.querySelector(".down").onclick = () => moveLayerDown(element.id, canvas);
+        layerItem.querySelector(".up").onclick = (e) => {
+            e.stopPropagation();
+            moveLayerUp(element.id, canvas);
+        };
+
+        layerItem.querySelector(".down").onclick = (e) => {
+            e.stopPropagation();
+            moveLayerDown(element.id, canvas);
+        };
         layersList.appendChild(layerItem);
     });
 };
