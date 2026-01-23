@@ -1,5 +1,5 @@
 import { resizeState, state } from "../core/state.js";
-import { clamp, commit } from "../core/utils.js";
+import { clamp, persist, pushHistory } from "../core/utils.js";
 
 export const initResize = (canvas) => {
     canvas.addEventListener("mousedown", (e) => {
@@ -7,6 +7,7 @@ export const initResize = (canvas) => {
         if (!handle) return;
 
         e.stopPropagation();
+        pushHistory()
 
         const elem = handle.parentElement;
         const id = elem.dataset.id;
@@ -63,7 +64,8 @@ export const initResize = (canvas) => {
     });
 
     window.addEventListener("mouseup", () => {
+        if (!resizeState.isResizing) return;
         resizeState.isResizing = false;
-        commit();
+        persist();
     });
 }

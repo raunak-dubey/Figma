@@ -1,4 +1,4 @@
-import { commit } from "../core/utils.js";
+import { persist } from "../core/utils.js";
 
 export const updateElementStyle = (data, canvas) => {
     const elem = canvas.querySelector(`.element[data-id='${data.id}']`);
@@ -16,13 +16,13 @@ export const updateElementStyle = (data, canvas) => {
     }
 
     elem.style.transform = `rotate(${data.rotation}deg)`;
-    commit();
+    persist();
 };
 
 export const updateElementText = (data, canvas) => {
     const elem = canvas.querySelector(`.element[data-id='${data.id}']`);
     if (elem) {
         elem.textContent = data.text; 
-        commit();
+        persist();
     }
 };

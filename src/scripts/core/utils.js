@@ -1,3 +1,5 @@
+import { renderElement } from "../elements/elementRender.js";
+import { renderLayers } from "../ui/layers.js";
 import { saveLayout } from "./persistence.js";
 import { state } from "./state.js";
 
@@ -7,8 +9,10 @@ export const clamp = (value, min, max) => {
     return Math.max(min, Math.min(value, max));
 };
 
+const clone = (data) => structuredClone(data);
+
 // * Persistence * //
-export const commit = () => saveLayout();
+export const persist = () => saveLayout();
 
 // * Resize Handles Management * //
 export const addResizeHandles = (elem) => {
@@ -58,4 +62,37 @@ export const updateCanvasZIndex = (canvas) => {
 
         if (domElem) domElem.style.zIndex = elem.zIndex;
     });
+};
+
+// * Keyboard Shortcut Helpers
+export const pushHistory = () => {
+    state.history.past.push(clone(state.elements));
+    state.history.future.length = 0;
+};
+
+export const undo = () => {
+    if (!state.history.past.length) return;
+
+    state.history.future.push(clone(state.elements));
+    state.elements = state.history.past.pop();
+};
+
+export const redo = () => {
+    if (!state.history.future.length) return;
+
+    state.history.past.push(clone(state.elements));
+    state.elements = state.history.future.pop();
+};
+
+export const rerender = (canvas) => {
+    canvas.replaceChildren();
+
+    const sorted = [...state.elements].sort(
+        (a, b) => a.zIndex - b.zIndex
+    );
+
+    for (const elem of sorted) {
+        renderElement(elem, canvas);
+    }
+    renderLayers();
 };

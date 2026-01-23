@@ -1,5 +1,5 @@
 import { dragState, state } from "../core/state.js";
-import { clamp, commit } from "../core/utils.js";
+import { clamp, persist } from "../core/utils.js";
 
 export const initDrag = (canvas) => {
     window.addEventListener('mousemove', (e) => {
@@ -16,7 +16,7 @@ export const initDrag = (canvas) => {
         const newX = dragState.startX + deltaX;
         const newY = dragState.startY + deltaY;
 
-        const clampedX = clamp(newX, 0, canvasRect.width - elementData.width);
+        const clampedX = clamp(newX, 0, canvasRect.width - elementData.width);  
         const clampedY = clamp(newY, 0, canvasRect.height - elementData.height);
 
         elementData.x = clampedX;
@@ -32,6 +32,6 @@ export const initDrag = (canvas) => {
     window.addEventListener('mouseup', (e) => {
         dragState.isDragging = false;
         dragState.elementId = null;
-        commit();
+        persist();
     });
 }

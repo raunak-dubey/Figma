@@ -1,4 +1,5 @@
 import { dragState } from "../core/state.js";
+import { pushHistory } from "../core/utils.js";
 import { selectElement } from "./elementSelection.js";
 import { enableTextEditing } from "./textEditing.js";
 
@@ -39,6 +40,7 @@ export function renderElement(data, canvas) {
         e.stopPropagation();
         selectElement(data.id, canvas);
 
+        pushHistory()
         dragState.isDragging = true;
         dragState.elementId = data.id;
 
@@ -46,7 +48,6 @@ export function renderElement(data, canvas) {
         dragState.startMouseY = e.clientY;
         dragState.startX = data.x;
         dragState.startY = data.y;
-
     });
 
     canvas.appendChild(elem);

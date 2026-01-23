@@ -1,5 +1,5 @@
 import { state } from "../core/state.js";
-import { commit } from "../core/utils.js";
+import { persist } from "../core/utils.js";
 import { createElementData } from "../elements/elementData.js";
 import { renderElement } from "../elements/elementRender.js";
 import { renderLayers } from "./layers.js";
@@ -14,7 +14,7 @@ export const initToolbar = (canvas) => {
             const type = toolName === "shape" ? "rect" : "text";
             const data = createElementData(type, canvas);
             state.elements.push(data);
-            commit();
+            persist();
             renderElement(data, canvas);
             renderLayers()
         }

@@ -1,6 +1,11 @@
 export const state = {
     elements: [],
-    selectedId: null
+    selectedId: null,
+
+    history: {
+        past: [],
+        future: []
+    }
 };
 
 // * Drag State * //

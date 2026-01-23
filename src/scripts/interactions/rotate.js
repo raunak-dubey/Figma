@@ -1,5 +1,5 @@
 import { rotateState, state } from "../core/state.js";
-import { calculateRotationAngle, commit } from "../core/utils.js";
+import { calculateRotationAngle, persist, pushHistory } from "../core/utils.js";
 
 export const initRotate = (canvas) => {
     canvas.addEventListener("mousedown", (e) => {
@@ -7,6 +7,7 @@ export const initRotate = (canvas) => {
         if (!handle) return;
 
         e.stopPropagation();
+        pushHistory()
 
         const elem = handle.parentElement;
         const id = elem.dataset.id;
@@ -41,6 +42,6 @@ export const initRotate = (canvas) => {
 
     window.addEventListener("mouseup", () => {
         rotateState.isRotating = false;
-        commit();
+        persist();
     });
 }
