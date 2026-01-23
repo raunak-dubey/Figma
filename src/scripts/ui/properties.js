@@ -6,18 +6,18 @@ const propertiesPanel = document.getElementById("propertiesPanel");
 const content = document.getElementById("propertiesContent");
 
 export const showPropertiesPanel = (canvas) => {
-    layersPanel.hidden = true;
-    propertiesPanel.hidden = false;
-
     const data = state.elements.find(elem => elem.id === state.selectedId);
-    if (!data) return;
+    if (!data) {
+        hidePropertiesPanel();
+        return;
+    };
 
     renderProperties(data, canvas);
 };
 
 export const hidePropertiesPanel = () => {
-    propertiesPanel.hidden = true;
-    layersPanel.hidden = false;
+    if (!content) return;
+    content.innerHTML = '<p class="empty-state">Select an element to edit properties</p>';
 };
 
 const renderProperties = (data, canvas) => {

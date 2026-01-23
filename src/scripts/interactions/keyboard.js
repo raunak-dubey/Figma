@@ -20,7 +20,11 @@ let moving = false;
 
 export const initKeyboard = (canvas) => {
     window.addEventListener("keydown", (e) => {
-        if (document.activeElement?.isContentEditable) return;
+        const active = document.activeElement;
+        const isInput = active?.tagName === "INPUT" || active?.tagName === "TEXTAREA";
+        const isEditable = active?.isContentEditable;
+
+        if (isInput || isEditable) return;
 
         const ctrl = e.metaKey || e.ctrlKey;
 
@@ -33,7 +37,7 @@ export const initKeyboard = (canvas) => {
         }
 
         // * Redo
-        if (ctrl && e.key === "y" ) {
+        if (ctrl && e.key === "y") {
             e.preventDefault();
             redo();
             rerender(canvas);

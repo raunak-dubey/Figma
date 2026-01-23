@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A lightweight Figma-like canvas editor for creating and editing shapes and text.">
     <link rel="shortcut icon" href="./src/assets/favicon.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.8.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="stylesheet" href="./src/style.css">
     <title>Figma</title>
@@ -14,65 +17,67 @@
 <body>
     <!-- @ Toolbar -->
     <header class="toolbar" aria-label="Editor toolbar">
-        <button class="move icons" data-name="move" aria-label="Move tool">
-            <i class="icon ri-cursor-fill" aria-hidden="true"></i>
-        </button>
-        <button class="frame icons" data-name="frame" aria-label="Frame tool">
-            <i class="icon ri-artboard-line" aria-hidden="true"></i>
-        </button>
-        <button class="shape icons" data-name="shape" aria-label="Draw rectangle">
-            <i class="icon ri-rectangle-line" aria-hidden="true"></i>
-        </button>
-        <button class="text icons" data-name="text" aria-label="Text tool">
-            <i class="icon ri-text" aria-hidden="true"></i>
-        </button>
+        <div class="toolbar-group">
+            <button class="move icons" data-name="move" aria-label="Move tool">
+                <i class="icon ri-cursor-fill" aria-hidden="true"></i>
+            </button>
+            <button class="frame icons" data-name="frame" aria-label="Frame tool">
+                <i class="icon ri-artboard-line" aria-hidden="true"></i>
+            </button>
+            <button class="shape icons" data-name="shape" aria-label="Rectangle">
+                <i class="icon ri-rectangle-line" aria-hidden="true"></i>
+            </button>
+            <button class="text icons" data-name="text" aria-label="Text">
+                <i class="icon ri-text" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <div class="toolbar-divider"></div>
 
         <div class="toolbar-group export">
             <button id="exportJson" class="export-btn" aria-label="Export as JSON">
+                <i class="ri-code-s-slash-line" aria-hidden="true"></i>
                 JSON
             </button>
             <button id="exportHtml" class="export-btn" aria-label="Export as HTML">
+                <i class="ri-html5-line" aria-hidden="true"></i>
                 HTML
             </button>
         </div>
     </header>
 
     <main class="editor">
-
         <!-- @ Main Workspace -->
         <section class="workspace">
             <aside class="panel right-panel">
-                <!-- * Layers -->
-                <div id="layersPanel">
-                    <div class="panelHeader">Layers</div>
+                <!-- * Layers Panel (Top) -->
+                <div id="layersPanel" class="panel-section layers-section">
+                    <div class="panelHeader">
+                        <span class="panelHeader-title">Layers</span>
+                        <button class="panelHeader-action" aria-label="Layer options">
+                            <i class="ri-more-line"></i>
+                        </button>
+                    </div>
                     <ul id="layersList"></ul>
                 </div>
 
-                <!-- * Properties -->
-                <div id="propertiesPanel" hidden>
-                    <div class="panelHeader">Properties</div>
-                    <div id="propertiesContent"></div>
+                <!-- * Properties Panel (Bottom) -->
+                <div id="propertiesPanel" class="panel-section properties-section">
+                    <div class="panelHeader">
+                        <span class="panelHeader-title">Properties</span>
+                    </div>
+                    <div id="propertiesContent">
+                        <div class="empty-state">
+                            <i class="empty-state-icon ri-cursor-line"></i>
+                            <p class="empty-state-text">Select an element to<br>edit its properties</p>
+                        </div>
+                    </div>
                 </div>
             </aside>
 
             <!-- * Canvas Area -->
             <section id="canvas" tabindex="0" aria-label="Design canvas"></section>
         </section>
-
-        <!-- <div class="toolbar">
-            <button class="move icons" data-name="move" aria-label="move">
-                <i class="icon ri-cursor-fill"></i>
-            </button>
-            <button class="frame icons" data-name="frame" aria-label="frame">
-                <i class="icon ri-artboard-line"></i>
-            </button>
-            <button class="shape icons" data-name="shape" aria-label="Draw rectangle">
-                <i class="icon ri-rectangle-line"></i>
-            </button>
-            <button class="text icons" data-name="text" aria-label="text">
-                <i class="icon ri-text"></i>
-            </button>
-        </div> -->
     </main>
 
     <script type="module" src="./src/scripts/app.js"></script>

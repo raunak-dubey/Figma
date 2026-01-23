@@ -24,6 +24,7 @@ export const createElementData = (type, canvas) => {
     rotation: 0,
     zIndex: state.elements.length + 1,
 
+    layerName: type === "text" ? "Text" : "Rect",
     text: type === "text" ? "Text" : "",
     background: type === "rect" ? "#4f46e5" : null,
     color: type === "text" ? "#111827" : null
